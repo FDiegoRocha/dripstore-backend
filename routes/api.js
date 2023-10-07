@@ -1,12 +1,13 @@
-const express = require('express');
-const { listController } = require('../controllers/api/products.controllers');
-const router = express.Router();
+const express = require('express')
+const { listController, createController, removeController } = require('../controllers/api/products.controllers')
+const router = express.Router()
 
-/* GET users listing. */
 router.get('/', function (req, res, next) {
-  res.send('wellcome to the API');
-});
+  res.send('wellcome to the API')
+})
 
-router.get('/products', listController);
+router.get('/products', listController)
+router.post('/products', createController)
+router.delete('/products', removeController)
 
-module.exports = router;
+module.exports = router
