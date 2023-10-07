@@ -1,15 +1,18 @@
 const { Product } = require('../../models/Product')
 
-
-const listController = async (request, response) => {
+const list = async (request, response) => {
   const products = await Product.findAll()
 
-  console.log(products)
-
-  response.json({ products: products })
+  response.json({ products })
 }
 
-const createController = async (request, response) => {
+const show = async (request, response) => {
+  const product = await Product.findByPk(request.params.id)
+
+  response.json(product)
+}
+
+const create = async (request, response) => {
   const { name, price } = request.body
 
   const product = Product.build({ name, price })
@@ -21,7 +24,7 @@ const createController = async (request, response) => {
 }
 
 
-const removeController = async (request, response) => {
+const remove = async (request, response) => {
   const { id } = request.body
 
   const product = await Product.findByPk(id)
@@ -33,7 +36,8 @@ const removeController = async (request, response) => {
 
 
 module.exports = {
-  listController,
-  createController,
-  removeController,
+  list,
+  show,
+  create,
+  remove,
 }
