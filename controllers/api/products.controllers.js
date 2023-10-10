@@ -23,6 +23,27 @@ const create = async (request, response) => {
   response.json({ product })
 }
 
+const uptade = async (request, response) => {
+  try {
+    const { id } = request.params
+    const {name, price} = request.body
+
+    const product = await Product.findOne({ where: { id } })
+
+    if(!product){
+      response.status(401).json({message: "Nenhum produto encontrado" })
+  }else{
+    const product = await Product.update({ name, price },{ where: { id } })
+
+    response.status(200).json({ message:'Atualizado com sucesso' })
+  }
+
+  } catch (error) {
+    response.status(400).json({ error })
+  }
+
+}
+
 
 const remove = async (request, response) => {
   const { id } = request.body
@@ -38,6 +59,7 @@ const remove = async (request, response) => {
 module.exports = {
   list,
   show,
+  uptade,
   create,
   remove,
 }

@@ -1,7 +1,5 @@
 const { Sequelize } = require('sequelize')
-const dotenv = require('dotenv')
-
-dotenv.config()
+require('dotenv').config()
 
 const {
   DATABASE_NAME,
