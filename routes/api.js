@@ -1,5 +1,5 @@
 const express = require('express')
-const { list, create, remove, show, uptade } = require('../controllers/api/products.controllers')
+const { list, create, remove, show, update } = require('../controllers/api/products.controllers')
 const router = express.Router()
 
 router.get('/', function (req, res, next) {
@@ -8,8 +8,8 @@ router.get('/', function (req, res, next) {
 
 router.get('/products', list)
 router.get('/products/:id', show)
-router.put('/products/:id', uptade)
+router.put('/products/:id', update)
 router.post('/products', create)
-router.delete('/products', remove)
+router.delete('/products/:id', remove)
 
 module.exports = router
